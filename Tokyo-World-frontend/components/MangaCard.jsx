@@ -1,11 +1,14 @@
+import { Link } from "react-router-dom";
+
 export default function MangaCard({ manga }) {
-    const formattedDate = new Date(manga.releaseDate).toLocaleDateString('it-IT', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
-  
-    return (
+  const formattedDate = new Date(manga.releaseDate).toLocaleDateString('it-IT', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
+  return (
+    <Link to={`/manga/${manga.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
       <div
         className="card shadow-sm mx-auto"
         style={{
@@ -44,6 +47,6 @@ export default function MangaCard({ manga }) {
           </p>
         </div>
       </div>
-    );
-  }
-  
+    </Link>
+  );
+}

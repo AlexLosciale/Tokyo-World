@@ -2,11 +2,14 @@ import { NavLink } from 'react-router-dom';
 
 export default function Header() {
   return (
-    <header className="header text-white bg-alex py-3">
+    <header
+      className="header text-white bg-alex py-3"
+      style={{ position: 'sticky', top: 0, zIndex: 1000 }}
+    >
       <div className="container d-flex justify-content-between align-items-center">
         <h1 className="logo mb-0">
           <NavLink to="/" className="text-decoration-none">
-            <img src="/MANGAWORLD.png" alt="Manga World Logo" height="80" />
+            <img src="/MANGAWORLD.png" alt="Manga World Logo" height="50" />
           </NavLink>
         </h1>
         <nav className="nav">

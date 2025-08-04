@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
   res.send('Benvenuto nel backend!');
 });
 
-// Rotte per la cultura
+// Usa le rotte cultura/manga
 app.use('/api/culture', cultureRoutes);
 
 app.listen(PORT, () => {

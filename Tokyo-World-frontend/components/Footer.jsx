@@ -3,7 +3,7 @@ import { faTwitter, faInstagram, faFacebook } from '@fortawesome/free-brands-svg
 
 export default function Footer() {
   return (
-    <footer className="footer bg-dark text-white py-4">
+    <footer className="footer bg-dark text-white py-2">
       <div className="container text-center">
         <p className="mb-2">&copy; {new Date().getFullYear()} Tokyo World.</p>
         <p className="mb-3">Follow us on social media!</p>
@@ -16,7 +16,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               aria-label="Twitter"
             >
-              <FontAwesomeIcon icon={faTwitter} size="2x" />
+              <FontAwesomeIcon icon={faTwitter} size="lg" />
             </a>
           </li>
           <li className="list-inline-item mx-2">
@@ -27,7 +27,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               aria-label="Instagram"
             >
-              <FontAwesomeIcon icon={faInstagram} size="2x" />
+              <FontAwesomeIcon icon={faInstagram} size="lg" />
             </a>
           </li>
           <li className="list-inline-item mx-2">
@@ -38,7 +38,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               aria-label="Facebook"
             >
-              <FontAwesomeIcon icon={faFacebook} size="2x" />
+              <FontAwesomeIcon icon={faFacebook} size="lg" />
             </a>
           </li>
         </ul>
