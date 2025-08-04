@@ -1,5 +1,4 @@
 export default function MangaCard({ manga }) {
-    // Formatto la data ISO in formato più leggibile, es: 22 Luglio 1997
     const formattedDate = new Date(manga.releaseDate).toLocaleDateString('it-IT', {
       year: 'numeric',
       month: 'long',
