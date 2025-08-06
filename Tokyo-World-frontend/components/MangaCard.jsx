@@ -43,7 +43,7 @@ export default function MangaCard({ manga }) {
           <h5 className="card-title text-center mb-1">{manga.title}</h5>
           <p className="mb-1">Prezzo: €{manga.price.toFixed(2)}</p>
           <p className="mb-0" style={{ fontSize: '0.9rem', color: '#555' }}>
-            Uscito il: {formattedDate}
+            Uscita: {formattedDate}
           </p>
         </div>
       </div>
