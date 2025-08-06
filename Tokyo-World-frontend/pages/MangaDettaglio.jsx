@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 export default function MangaDettaglio() {
   const { id } = useParams();
@@ -61,9 +63,8 @@ export default function MangaDettaglio() {
 
   return (
     <div className="container py-4 my-5">
-      <h1 className="mb-4 text-center">{title || "Titolo non disponibile"}</h1>
+      <h1 className="mb-5 text-center">{title || "Titolo non disponibile"}</h1>
       <div className="row align-items-center">
-        {/* Contenitore immagine con sfondo sfocato leggermente esteso */}
         <div
           className="col-md-6 position-relative d-flex justify-content-center"
           style={{
@@ -73,7 +74,6 @@ export default function MangaDettaglio() {
             paddingBottom: "10px",
           }}
         >
-          {/* Sfondo sfocato esteso sopra e sotto */}
           {image && (
             <div
               style={{
@@ -81,7 +81,7 @@ export default function MangaDettaglio() {
                 top: 0,
                 left: 0,
                 width: "100%",
-                height: "calc(100% + 20px)", // 10px sopra e sotto
+                height: "calc(100% + 20px)",
                 marginTop: "-10px",
                 backgroundImage: `url(${image})`,
                 backgroundSize: "cover",
@@ -92,8 +92,6 @@ export default function MangaDettaglio() {
               }}
             />
           )}
-
-          {/* Immagine in primo piano dimensione fissa */}
           {image ? (
             <img
               src={image}
@@ -124,8 +122,6 @@ export default function MangaDettaglio() {
             </div>
           )}
         </div>
-
-        {/* Dati manga senza sfondo */}
         <div
           className="col-md-6"
           style={{ paddingLeft: "30px", backgroundColor: "white", borderRadius: "8px" }}
@@ -139,6 +135,7 @@ export default function MangaDettaglio() {
           <p><strong>Prezzo:</strong> {formatPrice(price)}</p>
           <p><strong>Stato:</strong> {status || "Non disponibile"}</p>
           <p><strong>Descrizione:</strong> {descriptionLong || "Non disponibile"}</p>
+          <button className="btn btn-danger d-flex align-items-center gap-2">Aggiungi al carrello <FontAwesomeIcon icon={faShoppingCart} /></button>
         </div>
       </div>
     </div>

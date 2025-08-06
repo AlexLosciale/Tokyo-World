@@ -1,4 +1,6 @@
 import { NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 export default function Header() {
   return (
@@ -27,7 +29,7 @@ export default function Header() {
             </li>
             <li className="nav-item">
               <NavLink
-                to="/"
+                to="/novita"
                 className={({ isActive }) =>
                   `nav-link ${isActive ? 'fw-bold' : ''}`
                 }
@@ -38,13 +40,13 @@ export default function Header() {
             </li>
             <li className="nav-item">
               <NavLink
-                to="/"
+                to="/carrello"
                 className={({ isActive }) =>
                   `nav-link ${isActive ? 'fw-bold' : ''}`
                 }
                 style={{ color: '#c73528', fontSize: '1.2rem' }}
               >
-                Eventi
+                <FontAwesomeIcon icon={faShoppingCart} />
               </NavLink>
             </li>
           </ul>
