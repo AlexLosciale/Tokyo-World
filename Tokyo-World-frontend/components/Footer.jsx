@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="footer bg-dark text-white py-2">
       <div className="container text-center">
-        <p className="mb-2">&copy; {new Date().getFullYear()} Tokyo World.</p>
+        <p className="mb-2">&copy; {new Date().getFullYear()} Manga World.</p>
         <p className="mb-3">Follow us on social media!</p>
         <ul className="list-inline mb-0">
           <li className="list-inline-item mx-2">

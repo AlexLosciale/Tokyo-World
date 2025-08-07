@@ -148,7 +148,18 @@ export default function MangaNew() {
               <div>
                 <h5>{manga.title}</h5>
                 <p className="mb-1"><strong>Autore:</strong> {manga.author}</p>
-                <p className="mb-1"><strong>Genere:</strong> {manga.genre.join(', ')}</p>
+                <p className="mb-1">
+                  <strong>Genere:</strong>{" "}
+                  {Array.isArray(manga.genre) && manga.genre.length > 0 ? (
+                    manga.genre.map((g, index) => (
+                      <span key={index} className="badge bg-secondary me-2">
+                        {g}
+                      </span>
+                    ))
+                  ) : (
+                    <span className="text-muted">Non disponibile</span>
+                  )}
+                </p>
                 <p className="mb-1"><strong>Data di uscita:</strong> {new Date(manga.releaseDate).toLocaleDateString("it-IT")}</p>
                 <p className="mb-1"><strong>Prezzo:</strong> €{manga.price.toFixed(2)}</p>
                 <p className="mb-0">{manga.descriptionLong}</p>

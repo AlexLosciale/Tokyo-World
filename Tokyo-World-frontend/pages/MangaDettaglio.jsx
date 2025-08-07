@@ -145,11 +145,28 @@ export default function MangaDettaglio() {
           <p><strong>Autore:</strong> {author || "Non disponibile"}</p>
           <p>
             <strong>Genere:</strong>{" "}
-            {Array.isArray(genre) && genre.length > 0 ? genre.join(", ") : "Non disponibile"}
+            {Array.isArray(genre) && genre.length > 0 ? (
+              genre.map((g, index) => (
+                <span key={index} className="badge bg-secondary me-2">
+                  {g}
+                </span>
+              ))
+            ) : (
+              <span className="text-muted">Non disponibile</span>
+            )}
           </p>
           <p><strong>Data di rilascio:</strong> {formatDate(releaseDate)}</p>
           <p><strong>Prezzo:</strong> {formatPrice(price)}</p>
-          <p><strong>Stato:</strong> {status || "Non disponibile"}</p>
+          <p>
+            <strong>Stato:</strong>{" "}
+            {status === "Completato" ? (
+              <span className="badge bg-success">Completato</span>
+            ) : status === "In corso" ? (
+              <span className="badge bg-warning">In corso</span>
+            ) : (
+              <span className="badge bg-secondary">Non disponibile</span>
+            )}
+          </p>
           <p><strong>Descrizione:</strong> {descriptionLong || "Non disponibile"}</p>
           <button
             className="btn btn-danger d-flex align-items-center gap-2"
