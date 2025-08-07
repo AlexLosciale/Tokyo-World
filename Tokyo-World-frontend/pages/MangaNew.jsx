@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import { Alert } from 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const mangaList = [
   {

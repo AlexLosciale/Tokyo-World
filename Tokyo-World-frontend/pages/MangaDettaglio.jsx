@@ -2,12 +2,14 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { useCart } from "../src/context/CartContext";
 
 export default function MangaDettaglio() {
   const { id } = useParams();
   const [manga, setManga] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedManga, setSelectedManga] = useState(null);
 
   useEffect(() => {
     const fetchManga = async () => {
@@ -34,6 +36,20 @@ export default function MangaDettaglio() {
   if (loading) return <p className="text-center mt-5">Caricamento...</p>;
   if (error) return <p className="text-center mt-5 text-danger">Errore: {error}</p>;
   if (!manga) return <p className="text-center mt-5">Nessun dato trovato</p>;
+
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    addToCart({
+      title,
+      author,
+      releaseDate,
+      status,
+      price,
+      image,
+    });
+    setSelectedManga({ title });
+  };
 
   const {
     title,
@@ -135,9 +151,34 @@ export default function MangaDettaglio() {
           <p><strong>Prezzo:</strong> {formatPrice(price)}</p>
           <p><strong>Stato:</strong> {status || "Non disponibile"}</p>
           <p><strong>Descrizione:</strong> {descriptionLong || "Non disponibile"}</p>
-          <button className="btn btn-danger d-flex align-items-center gap-2">Aggiungi al carrello <FontAwesomeIcon icon={faShoppingCart} /></button>
+          <button
+            className="btn btn-danger d-flex align-items-center gap-2"
+            onClick={handleAddToCart}
+          >
+            Aggiungi al carrello <FontAwesomeIcon icon={faShoppingCart} />
+          </button>       
         </div>
       </div>
+      {selectedManga && (
+        <div className="modal show fade d-block" tabIndex="-1" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Ordine Confermato</h5>
+                <button type="button" className="btn-close" onClick={() => setSelectedManga(null)}></button>
+              </div>
+              <div className="modal-body">
+                <p>Hai ordinato <strong>{selectedManga.title}</strong> con successo!</p>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn text-white" onClick={() => setSelectedManga(null)} style={{ backgroundColor: '#c73528' }}>
+                  Chiudi
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
