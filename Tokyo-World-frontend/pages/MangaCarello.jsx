@@ -1,27 +1,36 @@
 import { useCart } from "../src/context/CartContext";
 
 export default function MangaCarello() {
-  const { cart, getTotal } = useCart();
+  const { cart, getTotal, removeFromCart } = useCart();
 
   return (
-    <div className="container mt-5">
+    <div
+      className="container mt-5"
+      style={{ minHeight: "70vh" }}
+    >
       <h1 className="text-center mb-4">Manga Carello</h1>
-      {cart.length === 0 ? (
-        <p className="text-center">Il carrello è vuoto.</p>
-      ) : (
-        <table className="table">
-          <thead className="table-light">
+
+      <table className="table align-middle">
+        <thead className="table-light">
+          <tr>
+            <th>Img</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Data</th>
+            <th>Status</th>
+            <th>Prezzo</th>
+            <th>Rimuovi</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cart.length === 0 ? (
             <tr>
-              <th scope="col">img</th>
-              <th scope="col">Title</th>
-              <th scope="col">Author</th>
-              <th scope="col">Data</th>
-              <th scope="col">Status</th>
-              <th scope="col">Prezzo</th>
+              <td colSpan="7" className="text-center">
+                Il carrello è vuoto.
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {cart.map((item, index) => (
+          ) : (
+            cart.map((item, index) => (
               <tr key={index}>
                 <td>
                   <img src={item.image} alt={item.title} width="50" />
@@ -38,8 +47,20 @@ export default function MangaCarello() {
                       })
                     : "N/A"}
                 </td>
+                <td>
+                  <button
+                    className="btn btn-sm btn-outline-danger"
+                    onClick={() => removeFromCart(index)}
+                  >
+                    ❌
+                  </button>
+                </td>
               </tr>
-            ))}
+            ))
+          )}
+        </tbody>
+        {cart.length > 0 && (
+          <tfoot>
             <tr>
               <td colSpan="5" className="text-end fw-bold">
                 Totale:
@@ -50,9 +71,17 @@ export default function MangaCarello() {
                   currency: "EUR",
                 })}
               </td>
+              <td></td>
             </tr>
-          </tbody>
-        </table>
+          </tfoot>
+        )}
+      </table>
+      {cart.length > 0 && (
+        <div className="d-flex justify-content-end mt-4">
+          <button className="btn d-flex align-items-center gap-2 mb-5" style={{ backgroundColor: '#c73528', color: 'white' }}>
+            Procedi al pagamento <span style={{fontSize: "1.2rem"}}>→</span>
+          </button>
+        </div>
       )}
     </div>
   );
